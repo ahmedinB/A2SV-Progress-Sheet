@@ -6,21 +6,17 @@ class Solution(object):
         :rtype: int
         """
         nums.sort()
-        maxF=0
-        index=0
-        for i in range(k):
-            if index<len(nums):
-                if nums[index]<nums[index+1]:
-                    nums[index]=nums[index]+1
-                elif nums[index]==nums[index+1] :
-                    if index<=1:
-                        index-=1
-                    else:
-                        index+=1
-                
-                    
-                
-            print(i, index, nums)
-        return nums.count(nums[0])
+        j = 0
+        ans = 1
+        for i in range(1,len(nums)):
+            reqd = nums[i] - nums[i-1]
+            length = (i - j) * reqd
+            k -= length
+            while k < 0:
+                k += nums[i] - nums[j]
+                j += 1
+            ans = max(ans,i-j+1)
+            
+        return ans
 S=Solution()
 print(S.maxFrequency([1,2,4],5))
