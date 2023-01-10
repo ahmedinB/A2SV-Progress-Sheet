@@ -1,0 +1,17 @@
+class Solution:
+    def freqAlphabets(self, s: str) -> str:
+        i = 0
+        resp = ""
+        while i < len(s):
+            if s[i]=="#":
+                i+=1
+                pass
+            elif i+2 < len(s) and s[i+2] =="#":
+                order_= int(s[i:i+2])+96
+                resp+=chr(order_)
+                i+=2
+            else:
+                order_= int(s[i:i+1])+96
+                resp+= chr(order_)
+                i+=1
+        return resp
