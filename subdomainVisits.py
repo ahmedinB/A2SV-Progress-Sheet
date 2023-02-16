@@ -1,16 +1,24 @@
-class Solution:
-    def subdomainVisits(self, cpdomains: List[str]) -> List[str]:
+class Solution(object):
+    def subdomainVisits(self, cpdomains):
+        """
+        :type cpdomains: List[str]
+        :rtype: List[str]
+        """
+        resp = {}
+        for l in cpdomains:
+            l = l.split()
+            c = int(l[0])
+            domain = l[1]
+            domain = domain.split(".")
+            domain.reverse()
+            for d in domain:
+                print (d)
+        return resp
+####   response ["9001 leetcode.com","9001 discuss.leetcode.com","9001 com"]
+S = Solution()
+print(S.subdomainVisits(["9001 discuss.leetcode.com"]))
+print(S.subdomainVisits(["9001 post.leetcode.com"]))
+print(S.subdomainVisits(["9001 discuss.leetcode.com"]))
 
-        hashMap = {}
-        for domain in cpdomains:
-            # split the time and domain 
-            time, currDomain = domain.split()
-            # split each domain section
-            currDomain = currDomain.split(".")
-            time = int(time)
-
-            for i in range(len(currDomain)):
-                # sum up each domains visited time using hash map
-                hashMap['.'.join(currDomain[i:])] = hashMap.get('.'.join(currDomain[i:]), 0) + time
-
-        return [str(value) + ' ' + key for key, value in hashMap.items()]
+#  discuss   leetcode   com
+#   discuss.leetcode.com  leetcode.com   com
